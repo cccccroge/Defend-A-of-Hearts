@@ -8,6 +8,7 @@ signal should_generate_gravity_effect(pos)
 # nodes
 onready var effect_boost = get_node("KinematicBody2D/Effect_BOOST")
 onready var effect_gravity_src = load("res://scene/character/Effect_GRAVITY.tscn")
+onready var collision_shape = get_node("KinematicBody2D/CollisionShape2D")
 
 # information
 var table_w
@@ -18,6 +19,7 @@ var dir = Vector2()
 var velocity = Vector2()
 var isBoost
 var haveHole
+var default_shape
 
 # basic properties
 export(int) var MOVING_SPEED
@@ -35,17 +37,18 @@ export(int) var CONSUME_ENERGY_GROW_UP
 export(int) var CONSUME_ENERGY_ULTIMATE
 export(float) var CHARGING_ULT_SPEED
 export(float) var BOOSTED_FACTOR
-export(int) var GRAVITY_RANGE
-export(int) var GROW_UP_SCALE
+export(int) var GROW_UP_DURATION
 export(int) var ESCAPE_SPEED
 
-# states
+# enum
 var velocity_state
 var effect_state
-var scale_state
 enum VELOCITY_STATE { IDLE, MOVE, BOOSTED }
-enum EFFECT_STATE { NORMAL, BOOSTED, TRAPPED }
-enum SCALE_STATE { NORMAL, GIANT }
+enum EFFECT_STATE { NORMAL, BOOSTED, GIANT, TRAPPED }
+enum COLLISION_TYPE { ORIGINAL, DISABLE, GIANT }
+
+# key record
+enum KEY_RECORD { UP, DOWN, LEFT, RIGHT, BOOST }
 
 
 func _ready():
@@ -67,27 +70,31 @@ func _input(event):
 	# read inputs
 	if event.is_action_pressed("LEFT_1"): 
 		dir += Vector2(-1, 0)
-	elif event.is_action_released("LEFT_1"):
+	if event.is_action_released("LEFT_1"):
 		dir -= Vector2(-1, 0)
 	if event.is_action_pressed("RIGHT_1"):
 		dir += Vector2(1, 0)
-	elif event.is_action_released("RIGHT_1"):
+	if event.is_action_released("RIGHT_1"):
 		dir -= Vector2(1, 0)
 	if event.is_action_pressed("UP_1"):
 		dir += Vector2(0, -1)
-	elif event.is_action_released("UP_1"):
+	if event.is_action_released("UP_1"):
 		dir -= Vector2(0, -1)
 	if event.is_action_pressed("DOWN_1"):
 		dir += Vector2(0, 1)
-	elif event.is_action_released("DOWN_1"):
+	if event.is_action_released("DOWN_1"):
 		dir -= Vector2(0, 1)
 	if event.is_action_pressed("BOOST_1"):
-		isBoost = true
-	elif event.is_action_released("BOOST_1"):
+		if effect_state != EFFECT_STATE.GIANT:	# can't boost in GIANT
+			isBoost = true
+	if event.is_action_released("BOOST_1"):
 		isBoost = false
-	if event.is_action_pressed("ANTI_GRAVITY_1"):
+	if event.is_action_pressed("GRAVITY_1"):
 		if energy >= CONSUME_ENERGY_ANTI_GRAVITY:
 			activate_gravity_hole()
+	if event.is_action_pressed("GROW_UP_1"):
+		if effect_state != EFFECT_STATE.GIANT:	# only GIANT once
+			activate_giant_effect()
 	
 	# decide states (partial)
 	if dir.length() > 0:
@@ -100,7 +107,8 @@ func _input(event):
 	
 	if dir.length() > 0 and isBoost and energy >= CONSUME_ENERGY_SPEED_BOOSTED * get_process_delta_time():
 		effect_state = EFFECT_STATE.BOOSTED
-	else:
+	
+	if isBoost == false and effect_state == EFFECT_STATE.BOOSTED:
 		effect_state = EFFECT_STATE.NORMAL
 
 
@@ -133,8 +141,6 @@ func _process(delta):
 		effect_boost.hide()
 	elif effect_state == EFFECT_STATE.BOOSTED:
 		effect_boost.show()
-	elif effect_state == EFFECT_STATE.TRAPPED:
-		print("effect_state: TRAPPED")
 	
 	# GENERAL
 	if ulty < 100:
@@ -145,6 +151,7 @@ func _process(delta):
 func reset():
 	isBoost = false
 	haveHole = false
+	default_shape = get_node("KinematicBody2D/CollisionShape2D").get_shape()
 	
 	life = 5
 	energy = 100.0
@@ -152,7 +159,6 @@ func reset():
 	
 	velocity_state = VELOCITY_STATE.IDLE
 	effect_state = EFFECT_STATE.NORMAL
-	scale_state = SCALE_STATE.NORMAL
 	
 	pos = Vector2(table_w / 2 - X_OFFSET, table_h / 2)
 	set_pos(pos)
@@ -187,3 +193,47 @@ func activate_gravity_hole():
 	gravity_projectile_rigidbody.set_linear_velocity(launch_velocity)
 	
 	energy -= CONSUME_ENERGY_ANTI_GRAVITY
+
+
+func activate_giant_effect():
+	effect_state = EFFECT_STATE.GIANT
+	
+	# play expand animation
+	get_node("AnimPlayer_GIANT").play("expand")
+	
+	# add timer to stop the effect
+	var giant_effect_timer = Timer.new()
+	giant_effect_timer.set_name("Giant_effect_timer")
+	giant_effect_timer.set_wait_time(GROW_UP_DURATION)
+	giant_effect_timer.set_one_shot(true)
+	giant_effect_timer.connect("timeout", self, "disable_giant_effect")
+	add_child(giant_effect_timer)
+	giant_effect_timer.start()
+
+
+func disable_giant_effect():
+	if effect_state == EFFECT_STATE.GIANT:
+		effect_state = EFFECT_STATE.NORMAL
+	
+		# play shrink animation
+		get_node("AnimPlayer_GIANT").play("shrink")
+		
+		# free timer
+		get_node("Giant_effect_timer").queue_free()
+
+
+func set_collision_type(type):
+	if type == COLLISION_TYPE.ORIGINAL:
+		collision_shape.set_shape(default_shape)
+		collision_shape.set_pos(Vector2(10.996, -0.150696))
+	
+	elif type == COLLISION_TYPE.DISABLE:
+		collision_shape.set_shape(null)
+	
+	elif type == COLLISION_TYPE.GIANT:
+		var giant_shape = CapsuleShape2D.new()
+		giant_shape.set_radius(35.0)
+		giant_shape.set_height(24.0)
+		
+		collision_shape.set_pos(Vector2(20.838217, -0.150696))
+		collision_shape.set_shape(giant_shape)

@@ -1,0 +1,186 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://image/background.jpg" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 366.956, 31.7397 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 23.4078, 43.6376 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 147.5, 175 )
+
+[node name="Board" type="Sprite"]
+
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 360.792, -13.5032 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 1 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 360.922, 391.12 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 2 )
+shapes/2/transform = Matrix32( 0.974368, 0, 0, 3.10066, -0.179016, 205.016 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 3 )
+shapes/3/transform = Matrix32( 0.974368, 0, 0, -3, 0, 175 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 4 )
+shapes/4/transform = Matrix32( -0.974368, 8.5182e-08, 2.62268e-07, 3, 720, 205 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 5 )
+shapes/5/transform = Matrix32( -0.974368, 8.5182e-08, -2.71068e-07, -3.10066, 720, 175 )
+shapes/5/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Up" type="CollisionShape2D" parent="Wall"]
+
+transform/pos = Vector2( 360.792, -13.5032 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Down" type="CollisionShape2D" parent="Wall"]
+
+transform/pos = Vector2( 360.922, 391.12 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 1
+
+[node name="Left_bottom" type="CollisionPolygon2D" parent="Wall"]
+
+transform/pos = Vector2( -0.179016, 205.016 )
+transform/scale = Vector2( 0.974368, 3.10066 )
+build_mode = 0
+polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+shape_range = Vector2( 2, 2 )
+trigger = false
+
+[node name="Left_upper" type="CollisionPolygon2D" parent="Wall"]
+
+transform/pos = Vector2( 0, 175 )
+transform/scale = Vector2( 0.974368, -3 )
+build_mode = 0
+polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+shape_range = Vector2( 3, 3 )
+trigger = false
+
+[node name="Right_bottom" type="CollisionPolygon2D" parent="Wall"]
+
+transform/pos = Vector2( 720, 205 )
+transform/rot = 180.0
+transform/scale = Vector2( 0.974368, -3 )
+build_mode = 0
+polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+shape_range = Vector2( 4, 4 )
+trigger = false
+
+[node name="Right_upper" type="CollisionPolygon2D" parent="Wall"]
+
+transform/pos = Vector2( 720, 175 )
+transform/rot = 180.0
+transform/scale = Vector2( 0.974368, 3.10066 )
+build_mode = 0
+polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+shape_range = Vector2( 5, 5 )
+trigger = false
+
+[node name="Left_out" type="Area2D" parent="."]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 0.977974, 0, 0, 1, -24.1739, 187.38 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_out"]
+
+transform/pos = Vector2( -24.1739, 187.38 )
+transform/scale = Vector2( 0.977974, 1 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Right_out" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 727.599, 4.67315 )
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 16.9135, 184.513 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right_out"]
+
+transform/pos = Vector2( 16.9135, 184.513 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Cannot_touch" type="Area2D" parent="."]
+
+transform/pos = Vector2( 360, 190 )
+input/pickable = true
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannot_touch"]
+
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 0
+
+

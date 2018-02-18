@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://script/Player_2.gd" type="Script" id=1]
+[ext_resource path="res://image/pi_left.png" type="Texture" id=2]
+[ext_resource path="res://image/pi_light.png" type="Texture" id=3]
+[ext_resource path="res://image/pi_left_shade.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 24.125
+
+[node name="Player" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.996195, -0.0871557, 0.0593424, 0.678287, 25.5616, 20.1489 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+MOVING_SPEED = 400
+X_OFFSET = 95
+RESTORE_ENERGY_SPEED = 0.0
+CONSUME_ENERGY_SPEED_BOOSTED = 0.0
+CONSUME_ENERGY_ANTI_GRAVITY = null
+CONSUME_ENERGY_GROW_UP = null
+CONSUME_ENERGY_ULTIMATE = null
+CHARGING_ULT_SPEED = 0.5
+BOOSTED_FACTOR = 2.0
+GRAVITY_RANGE = null
+GROW_UP_SCALE = null
+ESCAPE_SPEED = null
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+centered = false
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 25.5616, 20.1489 )
+transform/rot = 5.0
+transform/scale = Vector2( 1, 0.680878 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Effect_BOOST" type="Node2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="Effect_BOOST"]
+
+transform/pos = Vector2( 25.3332, 19.2887 )
+enabled = false
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Trail" type="Particles2D" parent="Effect_BOOST"]
+
+visibility/opacity = 0.1
+transform/pos = Vector2( 38.2883, 19.7187 )
+config/amount = 6
+config/lifetime = 0.4
+config/time_scale = 2.0
+config/preprocess = 5.0
+config/emitting = false
+config/process_mode = 1
+config/flip_h = true
+config/texture = ExtResource( 4 )
+params/direction = 0.0
+params/spread = 0.0
+params/linear_velocity = 0.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+

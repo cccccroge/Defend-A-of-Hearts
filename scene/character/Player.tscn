@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://script/Player.gd" type="Script" id=1]
+[ext_resource path="res://image/pi_left.tex" type="Texture" id=2]
+[ext_resource path="res://scene/character/Effect_BOOST.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/character/giant_effect_expand.tres" type="Animation" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 16.9589
+height = 35.1535
+
+[node name="Player" type="Node2D"]
+
+script/script = ExtResource( 1 )
+MOVING_SPEED = 300
+X_OFFSET = 255
+MOVING_RANGE = 135
+RESTORE_ENERGY_SPEED = 5.0
+CONSUME_ENERGY_SPEED_BOOSTED = 50.0
+CONSUME_ENERGY_ANTI_GRAVITY = 20
+CONSUME_ENERGY_GROW_UP = null
+CONSUME_ENERGY_ULTIMATE = null
+CHARGING_ULT_SPEED = 0.25
+BOOSTED_FACTOR = 3.0
+GRAVITY_RANGE = null
+GROW_UP_SCALE = null
+ESCAPE_SPEED = null
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.00174339, -0.999999, 0.680877, 0.00118704, 10.996, -0.150696 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+
+transform/rot = 2160.0
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+transform/pos = Vector2( 10.996, -0.150696 )
+transform/rot = 89.9001
+transform/scale = Vector2( 1, 0.680878 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Effect_BOOST" parent="KinematicBody2D" instance=ExtResource( 3 )]
+
+visibility/visible = false
+
+[node name="AnimPlayer_GIANT" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/expand = ExtResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+

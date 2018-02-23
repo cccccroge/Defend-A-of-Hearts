@@ -35,9 +35,9 @@ func random_reset():
 
 func reset(who_got_hit):
 	if who_got_hit == 1:
-		set_pos(Vector2(table_w / 8 + get_item_rect().size.x / 2, table_h / 2 - get_item_rect().size.y / 2))
+		set_pos(Vector2(table_w / 2 - 120, table_h / 2))
 	elif who_got_hit == 2:
-		set_pos(Vector2(table_w * 7 / 8 - get_item_rect().size.x / 2, table_h / 2 - get_item_rect().size.y / 2))
+		set_pos(Vector2(table_w / 2 + 120, table_h / 2))
 	set_linear_velocity(Vector2(0, 0))
 	set_angular_velocity(0)
 	get_node("Sprite").set_self_opacity(1.0)

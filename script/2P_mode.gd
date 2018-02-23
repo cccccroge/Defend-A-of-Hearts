@@ -2,18 +2,28 @@ extends Node2D
 
 export(float) var ANGER_FACTOR
 var who_got_scored
+var gravity_effects = Array()	# store gravity effects gen by players
+
+# signals
+signal gen_gravity_hole(hole)
 
 func _ready():
 	randomize()
-	reset()
+	game_reset()
 
-func reset():
+func game_reset():
 	# reset objects
 	get_node("GameInterface/Player_1").reset()
 	get_node("GameInterface/Player_2").reset()
 	get_node("GameInterface/GUI_layer/UI_1").reset()
 	get_node("GameInterface/GUI_layer/UI_2").reset()
 	get_node("Hint").reset()
+	
+	# clear gravity effects
+	var effect_nodes = get_tree().get_nodes_in_group("effect")
+	print("about to clear: ", effect_nodes)
+	for i in effect_nodes:
+		i.queue_free()
 
 	# game process : (start) signals--> (playing) signals--> (gameover)
 	get_node("StartTimer").start()
@@ -107,7 +117,7 @@ func _on_Player_2_is_dead():
 
 
 func _on_ReplayButton_pressed():
-	reset()
+	game_reset()
 
 
 func _on_BackButton_pressed():
@@ -125,23 +135,15 @@ func play_random_score_sound():
 
 
 func _on_Ball_body_enter( body ):
-	if body.is_in_group("player"):
+	if body.is_in_group("player_body"):
+		# play sound
 		get_node("SamplePlayer").play("da", false)
-
-
-func _on_Cannot_touch_body_enter( body ):
-	if body.is_in_group("can_score"):
-		get_node("BallInvalidTimer").start()
-
-func _on_BallResetInvalidTimer_timeout():
-	get_node("Hint").hide_text()
-	var side = (get_node("GameInterface/Ball").get_pos().x > 360) + 1
-	get_node("GameInterface/Ball").reset(side)
-
-
-func _on_Cannot_touch_body_exit( body ):
-	if body.is_in_group("can_score"):
-		get_node("BallInvalidTimer").stop()
+		
+		# if player is GIANT: apply impulse
+		if body.get_parent().effect_state == body.get_parent().EFFECT_STATE.GIANT:
+			var ball = get_node("GameInterface/Ball")
+			ball.apply_impulse(Vector2(0, 0),
+					ball.get_linear_velocity().normalized() * body.get_parent().GROW_UP_BACKOFF_STRENGTH)
 
 
 func _on_Player_1_should_generate_gravity_effect(pos):
@@ -154,3 +156,27 @@ func _on_Player_1_should_generate_gravity_effect(pos):
 	
 	var launch_velocity = get_node("GameInterface/Player_1").velocity * gravity_projectile.velocity_factor
 	gravity_projectile_rigidbody.set_linear_velocity(launch_velocity)
+
+
+func _on_Player_2_should_generate_gravity_effect( pos ):
+	var gravity_projectile = load("res://scene/character/Effect_GRAVITY_projectile.tscn").instance()
+	var gravity_projectile_rigidbody = gravity_projectile.get_node("Projectile")
+	gravity_projectile.set_draw_behind_parent(true)
+	gravity_projectile.set_as_toplevel(true)
+	gravity_projectile_rigidbody.set_pos(pos)
+	get_node("GameInterface/Player_1").add_child(gravity_projectile)
+	
+	var launch_velocity = get_node("GameInterface/Player_2").velocity * gravity_projectile.velocity_factor
+	gravity_projectile_rigidbody.set_linear_velocity(launch_velocity)
+
+
+func _on_Player_1_sould_gen_umbrella():
+	var umbrella = preload("res://scene/character/Effect_Ulty.tscn").instance()
+	umbrella.connect("body_enter", self, "_on_Umbrella_effect_body_enter")
+	get_node("GameInterface").add_child(umbrella)
+	umbrella.activate()
+
+
+func _on_Umbrella_effect_body_enter( body ):
+	if body.is_in_group("can_score"):
+		body.apply_impulse(Vector2(0, 0), -body.get_linear_velocity() * 5000)

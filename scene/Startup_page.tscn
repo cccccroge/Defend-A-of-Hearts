@@ -2,12 +2,12 @@
 
 [ext_resource path="res://script/Startup_page.gd" type="Script" id=1]
 [ext_resource path="res://image/main_page.jpg" type="Texture" id=2]
-[ext_resource path="res://image/play.png" type="Texture" id=3]
-[ext_resource path="res://image/play_hover.png" type="Texture" id=4]
-[ext_resource path="res://image/option.png" type="Texture" id=5]
-[ext_resource path="res://image/option_hover.png" type="Texture" id=6]
-[ext_resource path="res://image/exit.png" type="Texture" id=7]
-[ext_resource path="res://image/exit_hover.png" type="Texture" id=8]
+[ext_resource path="res://image/play.tex" type="Texture" id=3]
+[ext_resource path="res://image/play_hover.tex" type="Texture" id=4]
+[ext_resource path="res://image/option.tex" type="Texture" id=5]
+[ext_resource path="res://image/option_hover.tex" type="Texture" id=6]
+[ext_resource path="res://image/exit.tex" type="Texture" id=7]
+[ext_resource path="res://image/exit_hover.tex" type="Texture" id=8]
 
 [node name="Startup_page" type="Node2D"]
 
@@ -28,7 +28,6 @@ stretch_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -132,7 +131,7 @@ margin/left = 0.0
 margin/top = 154.0
 margin/right = 61.0
 margin/bottom = 168.0
-text = "ver. 1.0"
+text = "ver. 1.1"
 valign = 2
 percent_visible = 1.0
 lines_skipped = 0

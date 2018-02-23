@@ -37,7 +37,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = {
@@ -52,7 +52,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("KinematicBody2D/Effect_buff:config/emitting")
+tracks/4/path = NodePath("Effect_buff:config/emitting")
 tracks/4/interp = 1
 tracks/4/imported = false
 tracks/4/keys = {
@@ -74,6 +74,18 @@ tracks/5/keys = {
 }, {
 "args": [ true ],
 "method": "set_process_input"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 1.2 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "update_size"
 } ]
 }
 

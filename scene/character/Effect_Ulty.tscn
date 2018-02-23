@@ -1,0 +1,144 @@
+[gd_scene load_steps=26 format=1]
+
+[ext_resource path="res://script/Effect_Ulty.gd" type="Script" id=1]
+[ext_resource path="res://image/umbrella_1.tex" type="Texture" id=2]
+[ext_resource path="res://image/umbrella_2.tex" type="Texture" id=3]
+[ext_resource path="res://image/umbrella_3.tex" type="Texture" id=4]
+[ext_resource path="res://image/umbrella_4.tex" type="Texture" id=5]
+[ext_resource path="res://image/umbrella_5.tex" type="Texture" id=6]
+[ext_resource path="res://image/umbrella_6.tex" type="Texture" id=7]
+[ext_resource path="res://image/umbrella_7.tex" type="Texture" id=8]
+[ext_resource path="res://image/umbrella_8.tex" type="Texture" id=9]
+[ext_resource path="res://image/umbrella_9.tex" type="Texture" id=10]
+[ext_resource path="res://image/umbrella_10.tex" type="Texture" id=11]
+[ext_resource path="res://image/umbrella_11.tex" type="Texture" id=12]
+[ext_resource path="res://image/umbrella_12.tex" type="Texture" id=13]
+[ext_resource path="res://image/umbrella_13.tex" type="Texture" id=14]
+[ext_resource path="res://image/umbrella_14.tex" type="Texture" id=15]
+[ext_resource path="res://image/umbrella_15.tex" type="Texture" id=16]
+[ext_resource path="res://image/umbrella_16.tex" type="Texture" id=17]
+[ext_resource path="res://image/umbrella_17.tex" type="Texture" id=18]
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 29.0929, -104.986, 23.9291, -130.805, 52.9258, -107.767 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 52.1314, 126.988, 24.7235, 147.246, 24.3263, 132.549, 29.8873, 113.483, 73.581, 100.374 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 89.0724, 70.1861, 73.581, 100.374, 29.8873, 113.483, 24.7235, 91.2385, 32.6678, 63.8306, 99.7972, 38.0116 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 106.55, -0.915543, 99.7972, 38.0116, 32.6678, 63.8306, 23.1346, 29.6701, 31.4762, 2.65941, 97.0167, -32.2956 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 79.142, -71.2227, 97.0167, -32.2956, 31.4762, 2.65941, 24.3263, -29.1178, 30.6817, -52.5536, 52.9258, -107.767 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 52.9258, -107.767, 30.6817, -52.5536, 22.7374, -81.9475, 29.0929, -104.986 )
+
+[sub_resource type="SpriteFrames" id=7]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "rotate",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "pop_up",
+"speed": 30.0
+} ]
+
+[node name="Umbrella_effect" type="RigidBody2D"]
+
+transform/pos = Vector2( 108.308, 180.823 )
+input/pickable = false
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 9 )
+shapes/1/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 10 )
+shapes/2/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 11 )
+shapes/3/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 12 )
+shapes/4/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 13 )
+shapes/5/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
+shapes/5/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 3
+mass = 100.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+SPEED = 100
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+transform/scale = Vector2( 1.3, 1.3 )
+frames = SubResource( 7 )
+animation = "pop_up"
+frame = 4
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+transform/scale = Vector2( 1.3, 1.3 )
+build_mode = 0
+polygon = Vector2Array( 23.9291, -130.805, 52.9258, -107.767, 79.142, -71.2227, 97.0167, -32.2956, 106.55, -0.915543, 99.7972, 38.0116, 89.0724, 70.1861, 73.581, 100.374, 52.1314, 126.988, 24.7235, 147.246, 24.3263, 132.549, 29.8873, 113.483, 24.7235, 91.2385, 32.6678, 63.8306, 23.1346, 29.6701, 31.4762, 2.65941, 24.3263, -29.1178, 30.6817, -52.5536, 22.7374, -81.9475, 29.0929, -104.986 )
+shape_range = Vector2( 0, 5 )
+trigger = false
+
+[node name="Interval_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+[node name="To_move_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.01
+one_shot = true
+autostart = false
+
+[connection signal="finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_finished"]
+
+[connection signal="timeout" from="Interval_timer" to="." method="_on_Interval_timer_timeout"]
+
+[connection signal="timeout" from="To_move_timer" to="." method="_on_To_move_timer_timeout"]
+
+

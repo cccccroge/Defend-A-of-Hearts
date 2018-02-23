@@ -1,15 +1,14 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://script/2P_mode.gd" type="Script" id=1]
 [ext_resource path="res://scene/character/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/character/Player_2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/character/Ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://image/background.jpg" type="Texture" id=5]
+[ext_resource path="res://image/background_2.png" type="Texture" id=5]
 [ext_resource path="res://scene/GUI/UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scene/GUI/UI_2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scene/GUI/Hint.tscn" type="PackedScene" id=8]
-[ext_resource path="res://sound/da.wav" type="Sample" id=9]
-[ext_resource path="res://sound/heyhey.wav" type="Sample" id=10]
+[ext_resource path="res://scene/GUI/Hint.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sound/da.wav" type="Sample" id=8]
+[ext_resource path="res://sound/heyhey.wav" type="Sample" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,46 +18,41 @@ extents = Vector2( 366.956, 31.7397 )
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.8713, 55.1631, 0.906615, 54.466, -51.1316, 49.9842, -51.1316, 6.44508 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+points = Vector2Array( 0.183725, 6.44508, 20.4178, 9.42995, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+points = Vector2Array( 0.183725, 6.44508, 20.7241, 9.19939, 20.8644, 54.2295, -0.763977, 54.2295, -51.3153, 51.6667, -51.1316, 6.44508 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+points = Vector2Array( 0.183725, 6.44508, 20.5486, 9.74097, 20.4477, 58.4221, -10.4184, 57.0095, -51.1316, 49.9842, -51.1316, 6.44508 )
 
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 23.4078, 43.6376 )
 
-[sub_resource type="RectangleShape2D" id=7]
-
-custom_solver_bias = 0.0
-extents = Vector2( 147.5, 175 )
-
-[sub_resource type="SampleLibrary" id=8]
+[sub_resource type="SampleLibrary" id=7]
 
 samples/da = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 8 )
 }
 samples/heyhey = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 9 )
 }
 
 [node name="2P_mode" type="Node2D"]
@@ -73,22 +67,22 @@ ANGER_FACTOR = 0.15
 editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 360.792, -13.5032 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 360.792, -16.5032 )
 shapes/0/trigger = false
 shapes/1/shape = SubResource( 1 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 360.922, 391.12 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 360.922, 396.12 )
 shapes/1/trigger = false
 shapes/2/shape = SubResource( 2 )
-shapes/2/transform = Matrix32( 0.974368, 0, 0, 3.10066, -0.179016, 205.016 )
+shapes/2/transform = Matrix32( 0.974368, 0, 0, 3.10066, -4.17902, 199.016 )
 shapes/2/trigger = false
 shapes/3/shape = SubResource( 3 )
-shapes/3/transform = Matrix32( 0.974368, 0, 0, -3, 0, 175 )
+shapes/3/transform = Matrix32( 0.974368, 0, 0, -3, -4, 177 )
 shapes/3/trigger = false
 shapes/4/shape = SubResource( 4 )
-shapes/4/transform = Matrix32( -0.974368, 8.5182e-08, 2.62268e-07, 3, 720, 205 )
+shapes/4/transform = Matrix32( -0.974368, 8.5182e-08, 2.62268e-07, 3, 725, 205 )
 shapes/4/trigger = false
 shapes/5/shape = SubResource( 5 )
-shapes/5/transform = Matrix32( -0.974368, 8.5182e-08, -2.71068e-07, -3.10066, 720, 175 )
+shapes/5/transform = Matrix32( -0.974368, 8.5182e-08, -2.71068e-07, -3.10066, 725, 180 )
 shapes/5/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -99,59 +93,60 @@ bounce = 0.0
 
 [node name="Up" type="CollisionShape2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( 360.792, -13.5032 )
+transform/pos = Vector2( 360.792, -16.5032 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Down" type="CollisionShape2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( 360.922, 391.12 )
+transform/pos = Vector2( 360.922, 396.12 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 1
 
 [node name="Left_bottom" type="CollisionPolygon2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( -0.179016, 205.016 )
+transform/pos = Vector2( -4.17902, 199.016 )
 transform/scale = Vector2( 0.974368, 3.10066 )
 build_mode = 0
-polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.8713, 55.1631, 0.906615, 54.466, -51.1316, 49.9842, -51.1316, 6.44508 )
 shape_range = Vector2( 2, 2 )
 trigger = false
 
 [node name="Left_upper" type="CollisionPolygon2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( 0, 175 )
+transform/pos = Vector2( -4, 177 )
 transform/scale = Vector2( 0.974368, -3 )
 build_mode = 0
-polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+polygon = Vector2Array( 0.183725, 6.44508, 20.4178, 9.42995, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
 shape_range = Vector2( 3, 3 )
 trigger = false
 
 [node name="Right_bottom" type="CollisionPolygon2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( 720, 205 )
+transform/pos = Vector2( 725, 205 )
 transform/rot = 180.0
 transform/scale = Vector2( 0.974368, -3 )
 build_mode = 0
-polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.5261, 51.6667, 0, 51.6667, -51.3153, 51.6667, -51.1316, 6.44508 )
+polygon = Vector2Array( 0.183725, 6.44508, 20.7241, 9.19939, 20.8644, 54.2295, -0.763977, 54.2295, -51.3153, 51.6667, -51.1316, 6.44508 )
 shape_range = Vector2( 4, 4 )
 trigger = false
 
 [node name="Right_upper" type="CollisionPolygon2D" parent="GameInterface/Wall"]
 
-transform/pos = Vector2( 720, 175 )
+transform/pos = Vector2( 725, 180 )
 transform/rot = 180.0
 transform/scale = Vector2( 0.974368, 3.10066 )
 build_mode = 0
-polygon = Vector2Array( 0.183725, 6.44508, 20.7099, 11.2828, 20.7099, 49.9842, 0.183725, 49.9842, -51.1316, 49.9842, -51.1316, 6.44508 )
+polygon = Vector2Array( 0.183725, 6.44508, 20.5486, 9.74097, 20.4477, 58.4221, -10.4184, 57.0095, -51.1316, 49.9842, -51.1316, 6.44508 )
 shape_range = Vector2( 5, 5 )
 trigger = false
 
 [node name="Left_out" type="Area2D" parent="GameInterface"]
 
 editor/display_folded = true
+transform/pos = Vector2( 1, 0 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 0.977974, 0, 0, 1, -24.1739, 187.38 )
@@ -191,57 +186,31 @@ shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Cannot_touch" type="Area2D" parent="GameInterface"]
-
-editor/display_folded = true
-transform/pos = Vector2( 360, 190 )
-input/pickable = true
-shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameInterface/Cannot_touch"]
-
-shape = SubResource( 7 )
-trigger = false
-_update_shape_index = 0
-
 [node name="Player_1" parent="GameInterface" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 104.007, 201.984 )
+GROW_UP_BACKOFF_STRENGTH = 1500
 
 [node name="KinematicBody2D" parent="GameInterface/Player_1" groups=[
-"player",
+"player_body",
 ]]
 
-[node name="CollisionShape2D" parent="GameInterface/Player_1/KinematicBody2D"]
+editor/display_folded = true
 
-visibility/visible = true
+[node name="Player_2" parent="GameInterface" instance=ExtResource( 3 )]
 
-[node name="Effect_BOOST" parent="GameInterface/Player_1/KinematicBody2D"]
+editor/display_folded = true
+transform/pos = Vector2( 604.607, 197.082 )
 
-visibility/visible = false
-
-[node name="Player_2" parent="GameInterface" groups=[
-"player",
-] instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 583.342, 203.491 )
+[node name="KinematicBody2D" parent="GameInterface/Player_2" groups=[
+"player_body",
+]]
 
 [node name="Ball" parent="GameInterface" instance=ExtResource( 4 )]
 
-friction = 0.5
-bounce = 0.6
-gravity_scale = 1.0
-damp_override/linear = 0.7
-FRICTION = 0.3
-
 [node name="Background_layer" type="CanvasLayer" parent="GameInterface"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -254,7 +223,6 @@ centered = false
 
 [node name="GUI_layer" type="CanvasLayer" parent="GameInterface"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -278,14 +246,14 @@ color = Color( 0, 0, 0, 1 )
 margin/top = 381.0
 margin/bottom = 421.0
 
-[node name="UI_2" parent="GameInterface/GUI_layer" instance=ExtResource( 7 )]
+[node name="UI_2" parent="GameInterface/GUI_layer" instance=ExtResource( 6 )]
 
-margin/left = 379.0
-margin/top = 380.0
-margin/right = 419.0
-margin/bottom = 420.0
+margin/left = 361.0
+margin/top = 381.0
+margin/right = 401.0
+margin/bottom = 421.0
 
-[node name="Hint" parent="." instance=ExtResource( 8 )]
+[node name="Hint" parent="." instance=ExtResource( 7 )]
 
 editor/display_folded = true
 
@@ -303,13 +271,6 @@ wait_time = 0.5
 one_shot = true
 autostart = false
 
-[node name="BallInvalidTimer" type="Timer" parent="."]
-
-process_mode = 1
-wait_time = 6.0
-one_shot = true
-autostart = false
-
 [node name="BallResetInvalidTimer" type="Timer" parent="."]
 
 process_mode = 1
@@ -320,7 +281,7 @@ autostart = false
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 8 )
+config/samples = SubResource( 7 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -338,10 +299,6 @@ default/chorus_send = 0.0
 
 [connection signal="body_enter" from="GameInterface/Right_out" to="." method="_on_Right_out_body_enter"]
 
-[connection signal="body_enter" from="GameInterface/Cannot_touch" to="." method="_on_Cannot_touch_body_enter"]
-
-[connection signal="body_exit" from="GameInterface/Cannot_touch" to="." method="_on_Cannot_touch_body_exit"]
-
 [connection signal="energy_changed" from="GameInterface/Player_1" to="." method="_on_Player_1_energy_changed"]
 
 [connection signal="is_dead" from="GameInterface/Player_1" to="." method="_on_Player_1_is_dead"]
@@ -350,7 +307,19 @@ default/chorus_send = 0.0
 
 [connection signal="should_generate_gravity_effect" from="GameInterface/Player_1" to="." method="_on_Player_1_should_generate_gravity_effect"]
 
+[connection signal="sould_gen_umbrella" from="GameInterface/Player_1" to="." method="_on_Player_1_sould_gen_umbrella"]
+
 [connection signal="ulty_changed" from="GameInterface/Player_1" to="." method="_on_Player_1_ulty_changed"]
+
+[connection signal="energy_changed" from="GameInterface/Player_2" to="." method="_on_Player_2_energy_changed"]
+
+[connection signal="is_dead" from="GameInterface/Player_2" to="." method="_on_Player_2_is_dead"]
+
+[connection signal="life_changed" from="GameInterface/Player_2" to="." method="_on_Player_2_life_changed"]
+
+[connection signal="should_generate_gravity_effect" from="GameInterface/Player_2" to="." method="_on_Player_2_should_generate_gravity_effect"]
+
+[connection signal="ulty_changed" from="GameInterface/Player_2" to="." method="_on_Player_2_ulty_changed"]
 
 [connection signal="body_enter" from="GameInterface/Ball" to="." method="_on_Ball_body_enter"]
 
@@ -362,10 +331,9 @@ default/chorus_send = 0.0
 
 [connection signal="timeout" from="BallResetTimer" to="." method="_on_BallResetTimer_timeout"]
 
-[connection signal="timeout" from="BallInvalidTimer" to="." method="_on_BallInvalidTimer_timeout"]
-
 [connection signal="timeout" from="BallResetInvalidTimer" to="." method="_on_BallResetInvalidTimer_timeout"]
 
 
 [editable path="GameInterface/Player_1"]
+[editable path="GameInterface/Player_2"]
 [editable path="Hint"]

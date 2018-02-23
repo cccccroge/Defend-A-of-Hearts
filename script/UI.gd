@@ -10,19 +10,18 @@ var ultimateBar
 
 
 func _ready():
-	life1TexFrame = get_node("HBoxContainer/MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life1")
-	life2TexFrame = get_node("HBoxContainer/MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life2")
-	life3TexFrame = get_node("HBoxContainer/MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life3")
-	life4TexFrame = get_node("HBoxContainer/MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life4")
-	life5TexFrame = get_node("HBoxContainer/MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life5")
-	energyBar = get_node("HBoxContainer/MarginContainer/VBoxContainer/EnergyPrototype/Status/Energy")
-	ultimateBar = get_node("HBoxContainer/MarginContainer/VBoxContainer/EnergyPrototype/Status/Ultimate")
+	life1TexFrame = get_node("MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life1")
+	life2TexFrame = get_node("MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life2")
+	life3TexFrame = get_node("MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life3")
+	life4TexFrame = get_node("MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life4")
+	life5TexFrame = get_node("MarginContainer/VBoxContainer/LifePrototype/MarginContainer/LifeBG/LifeSlot/Life5")
+	energyBar = get_node("MarginContainer/VBoxContainer/EnergyPrototype/Status/Energy")
+	ultimateBar = get_node("MarginContainer/VBoxContainer/EnergyPrototype/Status/Ultimate")
 	
 	reset()
 
 
 func reset():
-	set_pos(Vector2(0, 380))
 	update_life(5)
 	update_energy(100.0)
 	update_ultimate(0.0)

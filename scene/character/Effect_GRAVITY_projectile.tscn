@@ -8,7 +8,9 @@
 offsets = FloatArray( 0, 0.362595, 0.60687, 1 )
 colors = ColorArray( 1, 1, 1, 1, 0.394531, 0.385284, 0.385284, 0.174471, 0, 0, 0, 0.110627, 0, 0, 0, 0 )
 
-[node name="Effect_GRAVITY_projectile" type="Node2D"]
+[node name="Effect_GRAVITY_projectile" type="Node2D" groups=[
+"effect",
+]]
 
 visibility/behind_parent = true
 script/script = ExtResource( 1 )

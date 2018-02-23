@@ -8,6 +8,9 @@ export(float) var velocity_factor
 onready var rigidBody = get_node("Projectile")
 onready var particles = rigidBody.get_node("Smoke")
 
+# signals
+signal gen_gravity_hole(hole)
+
 # variable
 var owner	# 1 means player 1...
 

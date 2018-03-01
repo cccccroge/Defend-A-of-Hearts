@@ -39,6 +39,7 @@ func _on_StartTimer_timeout():
 
 func _on_Left_out_body_enter( body ):
 	if body.is_in_group("can_score"):
+		print("hit left out")
 		play_random_score_sound()
 		get_node("GameInterface/Player_1").life -= 1
 		get_node("GameInterface/GUI_layer/UI_1").update_life(get_node("GameInterface/Player_1").life)
@@ -46,7 +47,8 @@ func _on_Left_out_body_enter( body ):
 		get_node("GameInterface/Player_1").ulty += 100 * ANGER_FACTOR
 		get_node("GameInterface/GUI_layer/UI_1").update_ultimate(get_node("GameInterface/Player_1").ulty)
 	
-		get_node("GameInterface/Ball").hide()
+		#get_node("GameInterface/Ball").hide()
+		get_node("GameInterface/Ball").enable_collision_shape(false)
 		who_got_scored = 1
 		if get_node("GameInterface/Player_1").life != 0:
 			get_node("BallResetTimer").start()
@@ -54,6 +56,7 @@ func _on_Left_out_body_enter( body ):
 
 func _on_Right_out_body_enter( body ):
 	if body.is_in_group("can_score"):
+		print("hit right out")
 		play_random_score_sound()
 		get_node("GameInterface/Player_2").life -= 1
 		get_node("GameInterface/GUI_layer/UI_2").update_life(get_node("GameInterface/Player_2").life)
@@ -61,14 +64,14 @@ func _on_Right_out_body_enter( body ):
 		get_node("GameInterface/Player_2").ulty += 100 * ANGER_FACTOR
 		get_node("GameInterface/GUI_layer/UI_2").update_ultimate(get_node("GameInterface/Player_2").ulty)
 	
-		get_node("GameInterface/Ball").hide()
+		#get_node("GameInterface/Ball").hide()
+		get_node("GameInterface/Ball").enable_collision_shape(false)
 		who_got_scored = 2
 		if get_node("GameInterface/Player_2").life != 0:
 			get_node("BallResetTimer").start()
 
 
 func _on_BallResetTimer_timeout():
-	get_node("Hint").hide_text()
 	get_node("GameInterface/Ball").reset(who_got_scored)
 
 
@@ -170,13 +173,33 @@ func _on_Player_2_should_generate_gravity_effect( pos ):
 	gravity_projectile_rigidbody.set_linear_velocity(launch_velocity)
 
 
-func _on_Player_1_sould_gen_umbrella():
+func _on_Boundary_body_enter( body ):
+	if body.is_in_group("can_score"):
+		print("hit boundary")
+		body.random_reset()
+
+
+func _on_Player_1_sould_start_ulty_anim_left():
+	var umbrella_anim = preload("res://scene/character/Effect_Ulty_anim.tscn").instance()
+	umbrella_anim.connect("should_gen_umbrella_left", self, 
+			"_on_umbrella_anim_should_gen_umbrella_left")
+	get_node("GameInterface").add_child(umbrella_anim)
+
+
+func _on_umbrella_anim_should_gen_umbrella_left():
 	var umbrella = preload("res://scene/character/Effect_Ulty.tscn").instance()
-	umbrella.connect("body_enter", self, "_on_Umbrella_effect_body_enter")
 	get_node("GameInterface").add_child(umbrella)
 	umbrella.activate()
 
 
-func _on_Umbrella_effect_body_enter( body ):
-	if body.is_in_group("can_score"):
-		body.apply_impulse(Vector2(0, 0), -body.get_linear_velocity() * 5000)
+func _on_Player_2_sould_start_ulty_anim_right():
+	var umbrella_anim = preload("res://scene/character/Effect_Ulty_anim_2.tscn").instance()
+	umbrella_anim.connect("should_gen_umbrella_right", self, 
+			"_on_umbrella_anim_should_gen_umbrella_right")
+	get_node("GameInterface").add_child(umbrella_anim)
+
+
+func _on_umbrella_anim_should_gen_umbrella_right():
+	var umbrella = preload("res://scene/character/Effect_Ulty_2.tscn").instance()
+	get_node("GameInterface").add_child(umbrella)
+	umbrella.activate()

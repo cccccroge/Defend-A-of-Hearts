@@ -1,9 +1,4 @@
 extends Node2D
-signal is_dead
-signal energy_changed
-signal life_changed
-signal ulty_changed
-signal should_generate_gravity_effect(pos)
 
 # nodes & resource
 onready var effect_boost = get_node("Effect_BOOST")
@@ -11,6 +6,14 @@ onready var effect_gravity_src = load("res://scene/character/Effect_GRAVITY.tscn
 onready var kinematic_body = get_node("KinematicBody2D")
 onready var sprite = get_node("KinematicBody2D/Sprite")
 onready var collision_shape = get_node("KinematicBody2D/CollisionShape2D")
+
+# signals
+signal is_dead
+signal energy_changed
+signal life_changed
+signal ulty_changed
+signal should_generate_gravity_effect(pos)
+signal sould_start_ulty_anim_right
 
 # information
 var table_w
@@ -26,6 +29,7 @@ var haveHole
 export(int) var MOVING_SPEED
 export(float) var X_OFFSET
 export(float) var MOVING_RANGE
+export(int) var BOUNDARY_OFFSET
 var life
 var energy
 var ulty
@@ -100,6 +104,8 @@ func _input(event):
 			if velocity_state == VELOCITY_STATE.IDLE:	# and not moving
 				if energy >= CONSUME_ENERGY_GROW_UP:
 					activate_giant_effect()
+	if event.is_action_pressed("ULTIMATE_2"):
+		activate_ulty()
 	
 	# decide direction
 	dir = Vector2(0, 0)
@@ -133,8 +139,6 @@ func _process(delta):
 	# VELOCITY_STATE
 	if velocity_state == VELOCITY_STATE.IDLE and energy < 100:
 		velocity = Vector2(0, 0)
-		energy += RESTORE_ENERGY_SPEED * delta
-		emit_signal("energy_changed")
 	else:
 		velocity = dir.normalized() * MOVING_SPEED * delta
 		if velocity_state == VELOCITY_STATE.MOVE:
@@ -152,6 +156,10 @@ func _process(delta):
 				table_w - 15 - size.x / 2 + size.x / 3)
 		pos.y = clamp(pos.y, 15 + size.y / 2, table_h - 15 - size.y / 2)
 		set_pos(pos)
+	
+	if energy < 100:
+		energy += RESTORE_ENERGY_SPEED * delta
+		emit_signal("energy_changed")
 
 	# EFFECT_STATE
 	if effect_state == EFFECT_STATE.NORMAL:
@@ -174,6 +182,10 @@ func reset():
 	ulty = 0.0
 	
 	velocity_state = VELOCITY_STATE.IDLE
+	if effect_state == EFFECT_STATE.GIANT:
+		disable_giant_effect()
+	elif effect_state == EFFECT_STATE.TRAPPED:
+		print("get out trap func!")
 	effect_state = EFFECT_STATE.NORMAL
 	
 	pos = Vector2(table_w / 2 + X_OFFSET, table_h / 2)
@@ -278,3 +290,7 @@ func set_collision_type(type):
 func update_size():
 	size = sprite.get_texture().size
 	size *= sprite.get_transform().get_scale()
+
+
+func activate_ulty():
+	emit_signal("sould_start_ulty_anim_right")

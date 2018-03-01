@@ -13,7 +13,7 @@ signal energy_changed
 signal life_changed
 signal ulty_changed
 signal should_generate_gravity_effect(pos)
-signal sould_gen_umbrella
+signal sould_start_ulty_anim_left
 
 # information
 var table_w
@@ -29,6 +29,7 @@ var haveHole
 export(int) var MOVING_SPEED
 export(float) var X_OFFSET
 export(float) var MOVING_RANGE
+export(int) var BOUNDARY_OFFSET
 var life
 var energy
 var ulty
@@ -138,11 +139,8 @@ func _process(delta):
 	# VELOCITY_STATE
 	if velocity_state == VELOCITY_STATE.IDLE and energy < 100:
 		velocity = Vector2(0, 0)
-		energy += RESTORE_ENERGY_SPEED * delta
-		emit_signal("energy_changed")
 	else:
 		velocity = dir.normalized() * MOVING_SPEED * delta
-		var rm
 		if velocity_state == VELOCITY_STATE.MOVE:
 			pos += velocity
 		elif velocity_state == VELOCITY_STATE.BOOSTED:
@@ -154,10 +152,14 @@ func _process(delta):
 				energy = 0
 			emit_signal("energy_changed")
 		
-		pos.x = clamp(pos.x, 15 + size.x / 2 - size.x / 3, 
+		pos.x = clamp(pos.x, 15 + size.x / 2 - size.x / 3 + BOUNDARY_OFFSET, 
 				table_w - 15 - size.x / 2)
 		pos.y = clamp(pos.y, 15 + size.y / 2, table_h - 15 - size.y / 2)
 		set_pos(pos)
+	
+	if energy < 100:
+		energy += RESTORE_ENERGY_SPEED * delta
+		emit_signal("energy_changed")
 
 	# EFFECT_STATE
 	if effect_state == EFFECT_STATE.NORMAL:
@@ -291,4 +293,4 @@ func update_size():
 
 
 func activate_ulty():
-	emit_signal("sould_gen_umbrella")
+	emit_signal("sould_start_ulty_anim_left")

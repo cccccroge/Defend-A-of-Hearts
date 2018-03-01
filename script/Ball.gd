@@ -20,7 +20,7 @@ func _ready():
 	set_mass(MASS)
 	set_bounce(BOUNCITY)
 	set_linear_damp(FRICTION)
-	circle_shape = get_shape(0)
+	circle_shape = collision_shape.get_shape()
 	reset_side = -1
 	table_w = get_viewport_rect().size.x
 	table_h = get_viewport_rect().size.y - 100
@@ -41,8 +41,8 @@ func reset(who_got_hit):
 	set_linear_velocity(Vector2(0, 0))
 	set_angular_velocity(0)
 	get_node("Sprite").set_self_opacity(1.0)
-	enable_collision_shape(true)
 	show()
+	enable_collision_shape(true)
 
 
 func disappear_anim():
@@ -74,10 +74,13 @@ func _on_wait_timer_timeout():
 
 func enable_collision_shape(boolean):
 	if boolean == false:
-		remove_shape(0)
+		print("remove shapes")
+		clear_shapes()
+		#collision_shape.set_shape(null)
 	else:
-		if get_shape_count() == 0:
-			add_shape(circle_shape)
+		print("add shape")
+		add_shape(circle_shape)
+		#collision_shape.set_shape(circle_shape)
 
 
 func set_reset_side(side):

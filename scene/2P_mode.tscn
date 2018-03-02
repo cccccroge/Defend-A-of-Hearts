@@ -35,67 +35,67 @@ points = Vector2Array( 3.26721, 16.8398, 19.9045, 19.1814, 19.7442, 54.0497, -1.
 custom_solver_bias = 0.0
 points = Vector2Array( -5.302, 16.5395, 20.0843, 20.7016, 20.0843, 57.0052, -10.4184, 57.0095, -51.6596, 56.8896, -50.9238, 16.5395 )
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 22.2119, 63.3166 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 23.4078, 66.8276 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -47.6169, 120.753, -47.5267, 193.284, -74.8832, 193, -75.2093, -25.3506 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 786.265, 191.456, 768.794, 191.456, 768.818, 120.354, 786.657, -25.1891 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 768.818, 120.354, 723.2, 120.354, 723.126, -4.82657, 786.657, -25.1891 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -75.2093, -25.3506, 786.657, -25.1891, 723.126, -4.82657, -1.90077, -4.7668 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -47.6169, 120.753, -75.2093, -25.3506, -1.90077, -4.7668, -2.02777, 120.753 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=13]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -46.303, -152.577, 0.999331, -152.577, 0.0369263, -26.7418, -75.1664, 14.0693 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=14]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -74.4859, -217.187, -46.2326, -217.307, -46.303, -152.577, -75.1664, 14.0693 )
 
-[sub_resource type="ConvexPolygonShape2D" id=14]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 791.733, 13.59, -75.1664, 14.0693, 0.0369263, -26.7418, 722.253, -26.9895 )
 
-[sub_resource type="ConvexPolygonShape2D" id=15]
+[sub_resource type="ConvexPolygonShape2D" id=16]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 770.915, -217.818, 790.428, -217.941, 791.733, 13.59, 771.207, -153.58 )
 
-[sub_resource type="ConvexPolygonShape2D" id=16]
+[sub_resource type="ConvexPolygonShape2D" id=17]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 771.207, -153.58, 791.733, 13.59, 722.253, -26.9895, 721.861, -153.288 )
 
-[sub_resource type="SampleLibrary" id=17]
+[sub_resource type="SampleLibrary" id=18]
 
 samples/da = {
 "db": 0.0,
@@ -203,7 +203,7 @@ trigger = false
 
 transform/pos = Vector2( 1, 0 )
 input/pickable = true
-shapes/0/shape = SubResource( 18 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 0.977974, 0, 0, 1, -24.1739, 189.321 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -215,7 +215,7 @@ angular_damp = 1.0
 
 transform/pos = Vector2( -24.1739, 189.321 )
 transform/scale = Vector2( 0.977974, 1 )
-shape = SubResource( 18 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
@@ -224,7 +224,7 @@ _update_shape_index = 0
 editor/display_folded = true
 transform/pos = Vector2( 727.599, 4.67315 )
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 15.9135, 184.513 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -235,7 +235,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameInterface/Right_out"]
 
 transform/pos = Vector2( 15.9135, 184.513 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
 
@@ -243,34 +243,34 @@ _update_shape_index = 0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 8 )
+shapes/1/shape = SubResource( 9 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 9 )
+shapes/2/shape = SubResource( 10 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 10 )
+shapes/3/shape = SubResource( 11 )
 shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/3/trigger = false
-shapes/4/shape = SubResource( 11 )
+shapes/4/shape = SubResource( 12 )
 shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/4/trigger = false
-shapes/5/shape = SubResource( 12 )
+shapes/5/shape = SubResource( 13 )
 shapes/5/transform = Matrix32( 1, 0, 0, 1, -1.57062, 409.758 )
 shapes/5/trigger = false
-shapes/6/shape = SubResource( 13 )
+shapes/6/shape = SubResource( 14 )
 shapes/6/transform = Matrix32( 1, 0, 0, 1, -1.57062, 409.758 )
 shapes/6/trigger = false
-shapes/7/shape = SubResource( 14 )
+shapes/7/shape = SubResource( 15 )
 shapes/7/transform = Matrix32( 1, 0, 0, 1, -1.57062, 409.758 )
 shapes/7/trigger = false
-shapes/8/shape = SubResource( 15 )
+shapes/8/shape = SubResource( 16 )
 shapes/8/transform = Matrix32( 1, 0, 0, 1, -1.57062, 409.758 )
 shapes/8/trigger = false
-shapes/9/shape = SubResource( 16 )
+shapes/9/shape = SubResource( 17 )
 shapes/9/transform = Matrix32( 1, 0, 0, 1, -1.57062, 409.758 )
 shapes/9/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -392,7 +392,7 @@ autostart = false
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 17 )
+config/samples = SubResource( 18 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

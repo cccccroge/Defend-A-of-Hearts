@@ -153,7 +153,7 @@ func _process(delta):
 			emit_signal("energy_changed")
 		
 		pos.x = clamp(pos.x, 15 + size.x / 2, 
-				table_w - 15 - size.x / 2 + size.x / 3)
+				table_w - 15 - size.x / 2 + size.x / 3 - BOUNDARY_OFFSET)
 		pos.y = clamp(pos.y, 15 + size.y / 2, table_h - 15 - size.y / 2)
 		set_pos(pos)
 	
@@ -294,3 +294,4 @@ func update_size():
 
 func activate_ulty():
 	emit_signal("sould_start_ulty_anim_right")
+	ulty -= CONSUME_ENERGY_ULTIMATE

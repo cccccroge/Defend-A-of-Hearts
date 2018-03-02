@@ -105,7 +105,8 @@ func _input(event):
 				if energy >= CONSUME_ENERGY_GROW_UP:
 					activate_giant_effect()
 	if event.is_action_pressed("ULT_1"):
-		activate_ulty()
+		if ulty >= CONSUME_ENERGY_ULTIMATE:
+			activate_ulty()
 	
 	# decide direction
 	dir = Vector2(0, 0)
@@ -294,3 +295,4 @@ func update_size():
 
 func activate_ulty():
 	emit_signal("sould_start_ulty_anim_left")
+	ulty -= CONSUME_ENERGY_ULTIMATE

@@ -75,12 +75,16 @@ func _on_wait_timer_timeout():
 func enable_collision_shape(boolean):
 	if boolean == false:
 		print("remove shapes")
-		clear_shapes()
+		#clear_shapes()
 		#collision_shape.set_shape(null)
+		set_collision_mask_bit(0, false)
+		set_layer_mask_bit(0, false)
 	else:
 		print("add shape")
-		add_shape(circle_shape)
+		#add_shape(circle_shape)
 		#collision_shape.set_shape(circle_shape)
+		set_collision_mask_bit(0, true)
+		set_layer_mask_bit(0, true)
 
 
 func set_reset_side(side):

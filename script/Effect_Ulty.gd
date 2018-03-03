@@ -53,5 +53,5 @@ func _fixed_process(delta):
 		direction = -direction
 	
 	set_pos(Vector2(new_x, new_y))
-	if get_pos().x < -180:
+	if get_pos().x > 900:
 		queue_free()

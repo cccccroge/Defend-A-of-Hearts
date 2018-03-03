@@ -134,7 +134,15 @@ func _on_BallInvalidTimer_timeout():
 
 
 func play_random_score_sound():
-	get_node("SamplePlayer").play("heyhey")
+	var random_id = randi() % 4
+	if random_id == 0:
+		get_node("SamplePlayer").play("heyhey")
+	elif random_id == 1:
+		get_node("SamplePlayer").play("dont")
+	elif random_id == 2:
+		get_node("SamplePlayer").play("iyoiyo")
+	elif random_id == 3:
+		get_node("SamplePlayer").play("heyhey")
 
 
 func _on_Ball_body_enter( body ):
@@ -183,6 +191,8 @@ func _on_Player_1_sould_start_ulty_anim_left():
 	var umbrella_anim = preload("res://scene/character/Effect_Ulty_anim.tscn").instance()
 	umbrella_anim.connect("should_gen_umbrella_left", self, 
 			"_on_umbrella_anim_should_gen_umbrella_left")
+	umbrella_anim.connect("players_still_get_inputs", self, "enable_inputs")
+	umbrella_anim.connect("players_enable_process", self, "enable_process")
 	get_node("GameInterface").add_child(umbrella_anim)
 
 
@@ -196,6 +206,8 @@ func _on_Player_2_sould_start_ulty_anim_right():
 	var umbrella_anim = preload("res://scene/character/Effect_Ulty_anim_2.tscn").instance()
 	umbrella_anim.connect("should_gen_umbrella_right", self, 
 			"_on_umbrella_anim_should_gen_umbrella_right")
+	umbrella_anim.connect("players_still_get_inputs", self, "enable_inputs")
+	umbrella_anim.connect("players_enable_process", self, "enable_process")
 	get_node("GameInterface").add_child(umbrella_anim)
 
 
@@ -203,3 +215,17 @@ func _on_umbrella_anim_should_gen_umbrella_right():
 	var umbrella = preload("res://scene/character/Effect_Ulty_2.tscn").instance()
 	get_node("GameInterface").add_child(umbrella)
 	umbrella.activate()
+
+
+func enable_inputs():
+	print("still get inputs!")
+	get_node("GameInterface/Player_1").set_pause_mode(PAUSE_MODE_PROCESS)
+	get_node("GameInterface/Player_1").set_process(false)
+	get_node("GameInterface/Player_2").set_pause_mode(PAUSE_MODE_PROCESS)
+	get_node("GameInterface/Player_2").set_process(false)
+
+
+func enable_process():
+	print("enable process")
+	get_node("GameInterface/Player_1").set_process(true)
+	get_node("GameInterface/Player_2").set_process(true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://script/2P_mode.gd" type="Script" id=1]
 [ext_resource path="res://scene/character/Player.tscn" type="PackedScene" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://scene/character/Ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://image/background_2.png" type="Texture" id=5]
 [ext_resource path="res://scene/GUI/UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scene/GUI/Hint.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sound/da.wav" type="Sample" id=8]
-[ext_resource path="res://sound/heyhey.wav" type="Sample" id=9]
+[ext_resource path="res://scene/GUI/UI_2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/GUI/Hint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sound/da.wav" type="Sample" id=9]
+[ext_resource path="res://sound/dont.wav" type="Sample" id=10]
+[ext_resource path="res://sound/heyhey.wav" type="Sample" id=11]
+[ext_resource path="res://sound/iyoiyo.wav" type="Sample" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -101,13 +104,25 @@ samples/da = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
+}
+samples/dont = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 10 )
 }
 samples/heyhey = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 11 )
+}
+samples/iyoiyo = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 12 )
 }
 
 [node name="2P_mode" type="Node2D"]
@@ -144,7 +159,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="Up" type="CollisionShape2D" parent="GameInterface/Wall"]
@@ -201,6 +216,7 @@ trigger = false
 
 [node name="Left_out" type="Area2D" parent="GameInterface"]
 
+editor/display_folded = true
 transform/pos = Vector2( 1, 0 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
@@ -303,8 +319,6 @@ GROW_UP_BACKOFF_STRENGTH = 1500
 "player_body",
 ]]
 
-editor/display_folded = true
-
 [node name="Player_2" parent="GameInterface" instance=ExtResource( 3 )]
 
 editor/display_folded = true
@@ -333,7 +347,6 @@ centered = false
 
 [node name="GUI_layer" type="CanvasLayer" parent="GameInterface"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -357,14 +370,14 @@ color = Color( 0, 0, 0, 1 )
 margin/top = 381.0
 margin/bottom = 421.0
 
-[node name="UI_2" parent="GameInterface/GUI_layer" instance=ExtResource( 6 )]
+[node name="UI_2" parent="GameInterface/GUI_layer" instance=ExtResource( 7 )]
 
 margin/left = 361.0
 margin/top = 381.0
 margin/right = 401.0
 margin/bottom = 421.0
 
-[node name="Hint" parent="." instance=ExtResource( 7 )]
+[node name="Hint" parent="." instance=ExtResource( 8 )]
 
 editor/display_folded = true
 

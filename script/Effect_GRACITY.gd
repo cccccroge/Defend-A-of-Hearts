@@ -1,5 +1,7 @@
 extends Node2D
 signal hole_finished
+signal ball_got_sucked_by_p1
+signal ball_got_sucked_by_p2
 
 # nodes
 onready var animation = get_node("effect_anim")
@@ -94,6 +96,12 @@ func _on_Disappear_area_body_enter( body ):
 		
 		# fade out stream
 		tween.start()
+		
+		# add ulty
+		if owner == 1:
+			emit_signal("ball_got_sucked_by_p1")
+		elif owner == 2:
+			emit_signal("ball_got_sucked_by_p2")
 
 
 func disable_absorbtion():

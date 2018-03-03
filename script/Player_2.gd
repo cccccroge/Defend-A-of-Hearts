@@ -50,7 +50,7 @@ export(int) var ESCAPE_SPEED
 var velocity_state
 var effect_state
 enum VELOCITY_STATE { IDLE, MOVE, BOOSTED }
-enum EFFECT_STATE { NORMAL, BOOSTED, GIANT, TRAPPED }
+enum EFFECT_STATE { NORMAL, BOOSTED, GIANT, ULTING }
 enum COLLISION_TYPE { ORIGINAL, DISABLE, GIANT }
 
 # key record dictionary
@@ -93,19 +93,24 @@ func _input(event):
 		key_record["DOWN"] = false
 	if event.is_action_pressed("BOOST_2"):
 		if effect_state != EFFECT_STATE.GIANT:	# can't boost in GIANT
-			key_record["BOOST"] = true
+			if effect_state != EFFECT_STATE.ULTING:
+				key_record["BOOST"] = true
 	if event.is_action_released("BOOST_2"):
 		key_record["BOOST"] = false
 	if event.is_action_pressed("GRAVITY_2"):
 		if energy >= CONSUME_ENERGY_ANTI_GRAVITY:
-			activate_gravity_hole()
+			if effect_state != EFFECT_STATE.ULTING:
+				activate_gravity_hole()
 	if event.is_action_pressed("GROW_UP_2"):
 		if effect_state != EFFECT_STATE.GIANT:	# only not GIANT
 			if velocity_state == VELOCITY_STATE.IDLE:	# and not moving
-				if energy >= CONSUME_ENERGY_GROW_UP:
-					activate_giant_effect()
+				if effect_state != EFFECT_STATE.ULTING:
+					if energy >= CONSUME_ENERGY_GROW_UP:
+						activate_giant_effect()
 	if event.is_action_pressed("ULTIMATE_2"):
-		activate_ulty()
+		if ulty >= CONSUME_ENERGY_ULTIMATE:
+			if effect_state != EFFECT_STATE.ULTING:
+				activate_ulty()
 	
 	# decide direction
 	dir = Vector2(0, 0)
@@ -184,8 +189,6 @@ func reset():
 	velocity_state = VELOCITY_STATE.IDLE
 	if effect_state == EFFECT_STATE.GIANT:
 		disable_giant_effect()
-	elif effect_state == EFFECT_STATE.TRAPPED:
-		print("get out trap func!")
 	effect_state = EFFECT_STATE.NORMAL
 	
 	pos = Vector2(table_w / 2 + X_OFFSET, table_h / 2)
@@ -221,6 +224,7 @@ func activate_gravity_hole():
 	gravity_projectile_rigidbody.set_linear_velocity(launch_velocity)
 	
 	energy -= CONSUME_ENERGY_ANTI_GRAVITY
+	emit_signal("energy_changed")
 
 
 func activate_giant_effect():
@@ -295,3 +299,4 @@ func update_size():
 func activate_ulty():
 	emit_signal("sould_start_ulty_anim_right")
 	ulty -= CONSUME_ENERGY_ULTIMATE
+	emit_signal("ulty_changed")

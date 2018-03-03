@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://script/UI.gd" type="Script" id=1]
-[ext_resource path="res://image/char1.tex" type="Texture" id=2]
+[ext_resource path="res://image/char2.tex" type="Texture" id=2]
 [ext_resource path="res://scene/GUI/LifePrototype.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/GUI/EnergyPrototype.tscn" type="PackedScene" id=4]
 
@@ -19,14 +19,15 @@ script/script = ExtResource( 1 )
 
 [node name="CharacterPic" type="TextureFrame" parent="."]
 
+rect/scale = Vector2( 0.6, 0.6 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 150.0
-margin/bottom = 100.0
+margin/left = -5.0
+margin/top = -16.0
+margin/right = 295.0
+margin/bottom = 184.0
 texture = ExtResource( 2 )
 stretch_mode = 0
 

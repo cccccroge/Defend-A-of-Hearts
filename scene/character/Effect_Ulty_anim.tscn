@@ -152,7 +152,6 @@ autoplay = ""
 
 [node name="Sprite" type="Sprite" parent="."]
 
-process/pause_mode = 2
 visibility/opacity = 0.0
 transform/pos = Vector2( 150, 0 )
 texture = ExtResource( 2 )

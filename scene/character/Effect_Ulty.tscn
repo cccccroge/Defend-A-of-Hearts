@@ -14,32 +14,32 @@
 [ext_resource path="res://image/umbrella_9.tex" type="Texture" id=12]
 [ext_resource path="res://sound/umbrella_wooshes.wav" type="Sample" id=13]
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 20.6438, 124.068, -10.9962, 136.826, -19.1614, 116.923, -18.6511, 92.4278, 51.7736, 101.614 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -12.5272, -91.2887, -14.5685, -106.598, -6.40334, -121.398, 23.1954, -109.66, 52.2839, -87.7164 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 91.0685, 41.9057, 74.2278, 74.0561, 51.7736, 101.614, -18.6511, 92.4278, -23.244, 63.8497, -17.6304, 34.2509, 99.2336, 8.2244 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 91.5788, -26.9879, 99.2336, 8.2244, -17.6304, 34.2509, -21.713, 10.776, -18.6511, -16.7815, 74.7381, -61.6899 )
 
-[sub_resource type="ConvexPolygonShape2D" id=13]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 52.2839, -87.7164, 74.7381, -61.6899, -18.6511, -16.7815, -22.2233, -55.566, -12.5272, -91.2887 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=6]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
@@ -58,7 +58,7 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[sub_resource type="SampleLibrary" id=15]
+[sub_resource type="SampleLibrary" id=7]
 
 samples/umbrella_wooshes = {
 "db": 0.0,
@@ -71,19 +71,19 @@ samples/umbrella_wooshes = {
 
 transform/pos = Vector2( 108.308, 180.823 )
 input/pickable = false
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 10 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 11 )
+shapes/2/shape = SubResource( 3 )
 shapes/2/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 12 )
+shapes/3/shape = SubResource( 4 )
 shapes/3/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
 shapes/3/trigger = false
-shapes/4/shape = SubResource( 13 )
+shapes/4/shape = SubResource( 5 )
 shapes/4/transform = Matrix32( 1.3, 0, 0, 1.3, 0, 0 )
 shapes/4/trigger = false
 collision/layers = 1
@@ -111,7 +111,7 @@ VIBRATE_RATE = 350
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
 transform/scale = Vector2( 1.3, 1.3 )
-frames = SubResource( 14 )
+frames = SubResource( 6 )
 animation = "pop_up"
 frame = 3
 playing = true
@@ -141,7 +141,7 @@ autostart = false
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 15 )
+config/samples = SubResource( 7 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

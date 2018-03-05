@@ -109,7 +109,7 @@ func _input(event):
 						activate_giant_effect()
 	if event.is_action_pressed("ULT_1"):
 		if ulty >= CONSUME_ENERGY_ULTIMATE:
-			if effect_state != EFFECT_STATE.ULTING:
+			if !get_parent().get_parent().someone_ulting:
 				activate_ulty()
 	
 	# decide direction
@@ -158,7 +158,7 @@ func _process(delta):
 			emit_signal("energy_changed")
 		
 		pos.x = clamp(pos.x, 15 + size.x / 2 - size.x / 3 + BOUNDARY_OFFSET, 
-				table_w - 15 - size.x / 2)
+				table_w / 2 - size.x / 2)
 		pos.y = clamp(pos.y, 15 + size.y / 2, table_h - 15 - size.y / 2)
 		set_pos(pos)
 	

@@ -2,7 +2,7 @@ extends Node2D
 
 export(float) var ANGER_FACTOR
 var who_got_scored
-var gravity_effects = Array()	# store gravity effects gen by players
+var someone_ulting
 
 # signals
 signal gen_gravity_hole(hole)
@@ -18,6 +18,7 @@ func game_reset():
 	get_node("GameInterface/GUI_layer/UI_1").reset()
 	get_node("GameInterface/GUI_layer/UI_2").reset()
 	get_node("Hint").reset()
+	someone_ulting = false
 	
 	# clear gravity effects
 	var effect_nodes = get_tree().get_nodes_in_group("effect")
@@ -194,12 +195,16 @@ func _on_Player_1_sould_start_ulty_anim_left():
 	umbrella_anim.connect("players_still_get_inputs", self, "enable_inputs")
 	umbrella_anim.connect("players_enable_process", self, "enable_process")
 	get_node("GameInterface").add_child(umbrella_anim)
+	
+	someone_ulting = true
 
 
 func _on_umbrella_anim_should_gen_umbrella_left():
 	var umbrella = preload("res://scene/character/Effect_Ulty.tscn").instance()
 	get_node("GameInterface").add_child(umbrella)
 	umbrella.activate()
+	
+	someone_ulting = false
 
 
 func _on_Player_2_sould_start_ulty_anim_right():
@@ -209,12 +214,16 @@ func _on_Player_2_sould_start_ulty_anim_right():
 	umbrella_anim.connect("players_still_get_inputs", self, "enable_inputs")
 	umbrella_anim.connect("players_enable_process", self, "enable_process")
 	get_node("GameInterface").add_child(umbrella_anim)
+	
+	someone_ulting = true
 
 
 func _on_umbrella_anim_should_gen_umbrella_right():
 	var umbrella = preload("res://scene/character/Effect_Ulty_2.tscn").instance()
 	get_node("GameInterface").add_child(umbrella)
 	umbrella.activate()
+	
+	someone_ulting = false
 
 
 func enable_inputs():
